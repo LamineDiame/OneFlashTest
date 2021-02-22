@@ -1,0 +1,63 @@
+<mat-sidenav-container class="sidenav-container mat-app-background" [ngClass]="{'dark-theme-mode': isDarkTheme}">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/forminput">Formulaire</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span routerLink="/">OneFlash</span>
+      <span style="flex:auto"></span>
+      <mat-slide-toggle [(ngModel)]="isDarkTheme"> 
+        Dark theme
+      </mat-slide-toggle>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <div>
+      <router-outlet></router-outlet>
+      <mat-form-field class="example-full-width">
+        <mat-label>Votre Nom de Famille</mat-label>
+        <input matInput placeholder="Exemple : Diame">
+      </mat-form-field>
+    </div>
+    <div>
+      <router-outlet></router-outlet>
+      <mat-form-field class="example-full-width">
+        <mat-label>Votre Prénom</mat-label>
+        <input matInput placeholder="Exemple : Lamine">
+      </mat-form-field>
+    </div>
+    <div>
+      <router-outlet></router-outlet>
+      <mat-form-field class="example-full-width">
+        <mat-label>Votre date de naissance</mat-label>
+        <input matInput placeholder="Exemple : 19/04/1995">
+      </mat-form-field>
+    </div>
+    <div>
+      <router-outlet></router-outlet>
+      <mat-form-field class="example-full-width">
+        <mat-label>Votre lieu de naissance</mat-label>
+        <input matInput placeholder="Exemple : Paris">
+      </mat-form-field>
+    </div>
+      <div>
+          <button mat-raised-button color="primary" style="margin-right: 5px;">Valider</button> 
+          <button  mat-raised-button color="accent" type="reset" class="btn btn-secondary" style="margin-right: 5px;">Annuler</button>
+          <button type="button"  color="warn"routerLink="/" mat-raised-button style="margin-right: 5px;">Retour</button>  
+      </div>
+      
+  </mat-sidenav-content>
+</mat-sidenav-container>
